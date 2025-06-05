@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ресторан</string>
+    <string name="home_title">Главная</string>
+    <string name="about_title">О нас</string>
+    <string name="menu_title">Меню</string>
+    <string name="events_title">События</string>
+    <string name="contact_title">Контакты</string>
+</resources>
