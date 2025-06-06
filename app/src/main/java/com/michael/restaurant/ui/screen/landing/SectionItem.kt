@@ -1,4 +1,4 @@
-package com.michael.restaurant.ui.landing
+package com.michael.restaurant.ui.screen.landing
 
 import com.michael.restaurant.R
 

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.dagger.hilt.android)
 }
 
 android {
@@ -55,8 +56,14 @@ dependencies {
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
+    // Hilt (DI)
+    implementation(libs.google.dagger.hilt.android)
+    ksp(libs.google.dagger.hilt.android.compiler)
+
     // Adaptive
     implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.window)
+    implementation(libs.androidx.constraintlayout.compose)
 
     // Room
     implementation(libs.androidx.room.runtime)

@@ -1,7 +1,8 @@
-package com.michael.restaurant.ui.landing
+package com.michael.restaurant.ui.screen.landing
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -36,12 +38,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.michael.restaurant.R
+import com.michael.restaurant.ui.adaptive.DeviceType
+import com.michael.restaurant.ui.screen.about.AboutSection
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LandingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    deviceType: DeviceType
 ) {
     val sectionsPosition = remember { mutableMapOf<String, Int>() }
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -51,7 +56,6 @@ fun LandingScreen(
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 
     NavigationMenu(
-        modifier = modifier,
         sectionItems = SectionItem.listOfSections,
         drawerState = drawerState,
         onItemClick = {
@@ -62,7 +66,7 @@ fun LandingScreen(
         }
     ) {
         Scaffold(
-            modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 LandingAppBar(
                     scrollBehavior = scrollBehavior,
@@ -71,7 +75,7 @@ fun LandingScreen(
                             drawerState.open()
                         }
                     },
-                    onTranslateIconClick = { }
+                    onTranslateIconClick = { /* TODO: ADD TRANSLATE */ }
                 )
             }
         ) { innerPadding ->
@@ -81,53 +85,34 @@ fun LandingScreen(
                     .padding(innerPadding)
                     .fillMaxSize()
                     .padding(horizontal = 12.dp)
-                    .verticalScroll(state = scrollState)
+                    .verticalScroll(state = scrollState),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+                val sectionModifier = modifier.fillMaxWidth(
+                    fraction = if (deviceType == DeviceType.MOBILE) 1f else 0.8f
+                )
+                val isExpanded = deviceType == DeviceType.TABLET
+
                 SectionItem.listOfSections.forEach { section ->
-
-                    val childModifier = Modifier
-                        .fillMaxWidth()
-                        .height(600.dp)
-
                     when (section) {
-                        is SectionItem.Home -> Text(
-                            text = stringResource(section.titleResId),
-                            modifier = childModifier.addSectionPosition(
+                        is SectionItem.About -> AboutSection(
+                            modifier = sectionModifier.addSectionPosition(
                                 section = section,
                                 sectionsPosition = sectionsPosition
-                            )
+                            ),
+                            isExpanded = isExpanded
                         )
 
-                        is SectionItem.About -> Text(
+                        else -> Text(
                             text = stringResource(section.titleResId),
-                            modifier = childModifier.addSectionPosition(
-                                section = section,
-                                sectionsPosition = sectionsPosition
-                            )
-                        )
-
-                        is SectionItem.Menu -> Text(
-                            text = stringResource(section.titleResId),
-                            modifier = childModifier.addSectionPosition(
-                                section = section,
-                                sectionsPosition = sectionsPosition
-                            )
-                        )
-
-                        is SectionItem.Events -> Text(
-                            text = stringResource(section.titleResId),
-                            modifier = childModifier.addSectionPosition(
-                                section = section,
-                                sectionsPosition = sectionsPosition
-                            )
-                        )
-
-                        is SectionItem.Contact -> Text(
-                            text = stringResource(section.titleResId),
-                            modifier = childModifier.addSectionPosition(
-                                section = section,
-                                sectionsPosition = sectionsPosition
-                            )
+                            modifier = sectionModifier
+                                .height(600.dp)
+                                .addSectionPosition(
+                                    section = section,
+                                    sectionsPosition = sectionsPosition
+                                )
                         )
                     }
                 }
