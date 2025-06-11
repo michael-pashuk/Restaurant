@@ -21,7 +21,7 @@ fun NavigationMenu(
     modifier: Modifier = Modifier,
     sectionItems: List<SectionItem>,
     drawerState: DrawerState,
-    onItemClick: (String) -> Unit,
+    onItemClick: (Int) -> Unit,
     content: @Composable () -> Unit,
 ) {
     ModalNavigationDrawer(
@@ -37,12 +37,12 @@ fun NavigationMenu(
 private fun NavigationSheet(
     modifier: Modifier,
     sectionItems: List<SectionItem>,
-    onItemClick: (String) -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     ModalDrawerSheet(
         modifier = modifier
     ) {
-        sectionItems.forEach { section ->
+        sectionItems.forEachIndexed { index, section ->
             NavigationDrawerItem(
                 modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
                 icon = {
@@ -60,7 +60,7 @@ private fun NavigationSheet(
                     )
                 },
                 selected = false,
-                onClick = { onItemClick(section.id) }
+                onClick = { onItemClick(index) }
             )
         }
     }

@@ -53,17 +53,27 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // Kotlinx
+    implementation(libs.jetbrains.kotlinx.datetime)
+
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
 
     // Hilt (DI)
     implementation(libs.google.dagger.hilt.android)
     ksp(libs.google.dagger.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Adaptive
     implementation(libs.androidx.compose.material3.adaptive)
     implementation(libs.androidx.window)
     implementation(libs.androidx.constraintlayout.compose)
+
+    // Stored Preferences
+    implementation(libs.androidx.datastore.preferences)
 
     // Room
     implementation(libs.androidx.room.runtime)

@@ -5,4 +5,17 @@
     <string name="menu_title">Menu</string>
     <string name="events_title">Events</string>
     <string name="contact_title">Contact</string>
+    <string name="signin_button">Sign In</string>
+    <string name="register_button">Register</string>
+    <string name="recover_pass_button">Recover password</string>
+    <string name="email_title" translatable="false">Email</string>
+    <string name="password_title">Password</string>
+    <string name="something_wrong_title">Something went wrong...</string>
+    <string name="signin_title">Sign In</string>
+    <string name="repeat_pass_title">Repeat password</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="event_title">Events</string>
+    <string name="event_empty_title">No events planned</string>
+    <string name="more_button">More</string>
+    <string name="collapse_button">Collapse</string>
 </resources>

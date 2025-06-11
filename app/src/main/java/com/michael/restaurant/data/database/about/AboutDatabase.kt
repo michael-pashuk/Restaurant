@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.michael.restaurant.data.database.about.dao.AboutDao
 import com.michael.restaurant.data.database.about.model.About
 
-@Database(entities = [About::class], version = 1, exportSchema = true)
+@Database(entities = [About::class], version = 1, exportSchema = false)
 abstract class AboutDatabase : RoomDatabase() {
     abstract fun aboutDao(): AboutDao
 }

@@ -6,4 +6,16 @@
     <string name="menu_title">Меню</string>
     <string name="events_title">События</string>
     <string name="contact_title">Контакты</string>
+    <string name="signin_button">Войти</string>
+    <string name="register_button">Зарегестрироваться</string>
+    <string name="recover_pass_button">Восстановить пароль</string>
+    <string name="password_title">Пароль</string>
+    <string name="something_wrong_title">Что-то пошло не так...</string>
+    <string name="signin_title">Войти</string>
+    <string name="repeat_pass_title">Повторите пароль</string>
+    <string name="welcome_title">Добро пожаловать</string>
+    <string name="event_title">События</string>
+    <string name="event_empty_title">События не запланированы</string>
+    <string name="more_button">Подробнее</string>
+    <string name="collapse_button">Свернуть</string>
 </resources>

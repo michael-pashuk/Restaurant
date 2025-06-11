@@ -1,37 +1,32 @@
 package com.michael.restaurant.ui.screen.about
 
 import android.util.Log
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.michael.restaurant.R
 import com.michael.restaurant.data.database.about.model.About
+import com.michael.restaurant.ui.component.ScreenLoader
+import com.michael.restaurant.ui.component.SomethingWentWrong
 
 @Composable
 fun AboutSection(
     modifier: Modifier = Modifier,
-    isExpanded: Boolean = false
+    isExpanded: Boolean = false,
+    viewModel: AboutViewModel = hiltViewModel()
 ) {
-    val viewModel: AboutViewModel = viewModel()
     val aboutState = viewModel.aboutState.collectAsState()
 
     when (val state = aboutState.value) {
-        AboutState.Loading -> LoadingState(modifier)
+        AboutState.Loading -> ScreenLoader(modifier)
 
         is AboutState.Success -> SuccessState(
             modifier = modifier,
@@ -39,31 +34,7 @@ fun AboutSection(
             isExpanded = isExpanded
         )
 
-        is AboutState.Error -> ErrorState(modifier)
-    }
-}
-
-@Composable
-private fun LoadingState(modifier: Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(modifier = Modifier.size(150.dp))
-    }
-}
-
-@Composable
-private fun ErrorState(modifier: Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Something went wrong",
-            color = Color.Gray,
-            fontWeight = FontWeight.SemiBold
-        )
+        is AboutState.Error -> SomethingWentWrong(modifier)
     }
 }
 
@@ -74,7 +45,7 @@ private fun SuccessState(
     isExpanded: Boolean = false
 ) {
     ConstraintLayout(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
     ) {
         val (headerRef, imageRef, bodyRef) = createRefs()
 
