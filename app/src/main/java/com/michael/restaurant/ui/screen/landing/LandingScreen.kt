@@ -2,6 +2,7 @@ package com.michael.restaurant.ui.screen.landing
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +18,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -24,6 +27,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,6 +41,7 @@ import com.michael.restaurant.R
 import com.michael.restaurant.ui.adaptive.DeviceType
 import com.michael.restaurant.ui.screen.about.AboutSection
 import com.michael.restaurant.ui.screen.event.EventSection
+import com.michael.restaurant.ui.screen.menu.MenuSection
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,6 +55,7 @@ fun LandingScreen(
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    val snackBarHostState = remember { SnackbarHostState() }
 
     NavigationMenu(
         sectionItems = SectionItem.listOfSections,
@@ -63,6 +69,7 @@ fun LandingScreen(
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
             topBar = {
                 LandingAppBar(
                     scrollBehavior = scrollBehavior,
@@ -80,11 +87,13 @@ fun LandingScreen(
                 modifier = Modifier
                     .padding(innerPadding)
                     .fillMaxSize()
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = 18.dp),
                 state = lazyColumnState,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 items(SectionItem.listOfSections) { section ->
+
                     val sectionModifier = modifier
                         .fillMaxWidth(
                             fraction = if (deviceType == DeviceType.MOBILE) 1f else 0.8f
@@ -99,6 +108,12 @@ fun LandingScreen(
 
                         is SectionItem.Events -> EventSection(
                             modifier = sectionModifier,
+                            isExpanded = isExpanded
+                        )
+
+                        is SectionItem.Menu -> MenuSection(
+                            modifier = sectionModifier,
+                            snackBarHostState = snackBarHostState,
                             isExpanded = isExpanded
                         )
 

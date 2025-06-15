@@ -10,10 +10,6 @@ class EventRepository
 @Inject constructor(
     private val eventDao: EventDao
 ) {
-    suspend fun getAll(): List<Event> {
-        return eventDao.getAll()
-    }
-
     suspend fun getEventById(id: Int): Event? {
         return eventDao.getEventById(id)
     }

@@ -10,7 +10,7 @@
     <string name="register_button">Зарегестрироваться</string>
     <string name="recover_pass_button">Восстановить пароль</string>
     <string name="password_title">Пароль</string>
-    <string name="something_wrong_title">Что-то пошло не так...</string>
+    <string name="something_wrong_title">Что-то пошло не так…</string>
     <string name="signin_title">Войти</string>
     <string name="repeat_pass_title">Повторите пароль</string>
     <string name="welcome_title">Добро пожаловать</string>
@@ -18,4 +18,18 @@
     <string name="event_empty_title">События не запланированы</string>
     <string name="more_button">Подробнее</string>
     <string name="collapse_button">Свернуть</string>
+    <string name="date_title">Дата</string>
+    <string name="name_title">Имя</string>
+    <string name="guest_count_title">Кол-во гостей</string>
+    <string name="phone_title">Телефон</string>
+    <string name="dismiss_button">Отменить</string>
+    <string name="send_button">Отправить</string>
+    <string name="date_in_past_error">Выбранная дата уже прошла. Пожалуйста, укажите актуальную дату.</string>
+    <string name="count_is_not_positive_error">Количество гостей должно быть больше нуля. Пожалуйста, укажите корректное число.</string>
+    <string name="empty_required_error">Пожалуйста, заполните все обязательные поля: имя, телефон и почта.</string>
+    <string name="date_selected_error">Вы не выбрали дату. Пожалуйста, укажите дату бронирования.</string>
+    <string name="invalid_email_error">Указан некорректный email. Пожалуйста, проверьте написание и попробуйте снова.</string>
+    <string name="invalid_phone_error">Некорректный номер телефона. Введите номер в правильном формате.</string>
+    <string name="message_successful_snackbar">Сообщение успешно отправлено</string>
+    <string name="booking_title">Бронирование</string>
 </resources>

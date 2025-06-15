@@ -1,7 +1,6 @@
 package com.michael.restaurant.ui.screen.event.component
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
@@ -24,7 +23,6 @@ fun DateEvent(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Log.d("DATE", date.toString())
         Icon(
             imageVector = Icons.Outlined.DateRange,
             contentDescription = ""

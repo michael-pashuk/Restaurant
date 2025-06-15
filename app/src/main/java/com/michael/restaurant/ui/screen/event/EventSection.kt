@@ -47,7 +47,7 @@ fun EventSection(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(R.string.events_title),
-            textAlign = if (isExpanded) TextAlign.Center else TextAlign.Start,
+            textAlign = if (isExpanded) TextAlign.Start else TextAlign.Center,
             style = MaterialTheme.typography.titleLarge
         )
         when (val state = eventState.value) {
