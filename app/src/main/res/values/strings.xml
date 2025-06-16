@@ -34,4 +34,11 @@
     <string name="message_successful_snackbar">Message sent successfully</string>
     <string name="booking_title">Booking</string>
     <string name="message_title">Message</string>
+    <string name="email" translatable="false">something@email.com</string>
+    <string name="phone" translatable="false">+0-999-999-99-99</string>
+    <string name="mon_fri_title">Mon-Fri</string>
+    <string name="saturday_title">Sat</string>
+    <string name="sunday_title">Sun</string>
+    <string name="weekday_title">Weekday</string>
+    <string name="contact_info_title">Contact Info</string>
 </resources>
