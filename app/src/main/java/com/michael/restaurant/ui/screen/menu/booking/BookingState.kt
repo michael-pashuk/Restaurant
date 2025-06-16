@@ -1,4 +1,4 @@
-package com.michael.restaurant.ui.screen.menu.section
+package com.michael.restaurant.ui.screen.menu.booking
 
 data class BookingState(
     val date: Long?,

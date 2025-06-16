@@ -16,6 +16,7 @@ import com.michael.restaurant.R
 import com.michael.restaurant.data.database.about.model.About
 import com.michael.restaurant.ui.component.ScreenLoader
 import com.michael.restaurant.ui.component.SomethingWentWrong
+import com.michael.restaurant.ui.component.Title
 
 @Composable
 fun AboutSection(
@@ -49,14 +50,20 @@ private fun SuccessState(
     ) {
         val (headerRef, imageRef, bodyRef) = createRefs()
 
-        Text(
+        Title(
             text = about.title,
-            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.constrainAs(headerRef) {
                 top.linkTo(parent.top)
                 centerHorizontallyTo(parent)
             }
         )
+
+        /*Text(
+            text = about.title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier =
+        )*/
+
         AsyncImage(
             modifier = Modifier.constrainAs(imageRef) {
                 top.linkTo(headerRef.bottom, margin = 12.dp)

@@ -1,13 +1,15 @@
-package com.michael.restaurant.ui.screen.menu.section
+package com.michael.restaurant.ui.screen.menu.booking
 
 import android.content.Context
-import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.michael.restaurant.R
 import com.michael.restaurant.data.database.booking.model.Booking
 import com.michael.restaurant.data.repository.BookingRepository
+import com.michael.restaurant.service.converter.longToLocalDate
 import com.michael.restaurant.service.helper.EmailHelper
+import com.michael.restaurant.service.validator.validateEmail
+import com.michael.restaurant.service.validator.validatePhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,6 +18,7 @@ import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import javax.inject.Inject
 
@@ -64,12 +67,20 @@ class BookingViewModel
 
         if (state.date == null) throw NullPointerException()
 
-        val intent = helper.createIntent(
+        val convertedDate = longToLocalDate(date = state.date)
+            .format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+
+        val message = helper.createBookingMessage(
             state.email,
-            state.date,
+            convertedDate,
             state.count,
             state.name,
             state.phone
+        )
+
+        val intent = helper.createIntent(
+            theme = "Table reservation for $convertedDate",
+            message = message
         )
 
         context.startActivity(intent)
@@ -165,18 +176,5 @@ class BookingViewModel
             .toLocalDate()
 
         return !selectedDate.isBefore(LocalDate.now())
-    }
-
-    private fun validateEmail(email: String): Boolean {
-        val emailRegex = Regex("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
-        return emailRegex.matches(email)
-    }
-
-    private fun validatePhone(phone: String): Boolean {
-        return if (phone.isDigitsOnly()) {
-            phone.length == 10
-        } else {
-            false
-        }
     }
 }

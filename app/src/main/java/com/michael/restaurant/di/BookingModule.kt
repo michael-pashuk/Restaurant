@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.michael.restaurant.data.database.booking.BookingDatabase
 import com.michael.restaurant.data.database.booking.dao.BookingDao
 import com.michael.restaurant.data.repository.BookingRepository
-import com.michael.restaurant.service.helper.EmailHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,12 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object BookingModule {
-
-    @Singleton
-    @Provides
-    fun provideEmailHelper(): EmailHelper {
-        return EmailHelper()
-    }
 
     @Provides
     @Singleton

@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,7 +19,6 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberDrawerState
@@ -34,12 +32,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.michael.restaurant.R
 import com.michael.restaurant.ui.adaptive.DeviceType
 import com.michael.restaurant.ui.screen.about.AboutSection
+import com.michael.restaurant.ui.screen.contact.ContactSection
 import com.michael.restaurant.ui.screen.event.EventSection
 import com.michael.restaurant.ui.screen.menu.MenuSection
 import kotlinx.coroutines.launch
@@ -53,8 +51,9 @@ fun LandingScreen(
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val lazyColumnState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+    val topAppBarState = rememberTopAppBarState()
     val scrollBehavior =
-        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(topAppBarState)
     val snackBarHostState = remember { SnackbarHostState() }
 
     NavigationMenu(
@@ -63,6 +62,11 @@ fun LandingScreen(
         onItemClick = { it ->
             coroutineScope.launch {
                 drawerState.close()
+
+                if (it == 0) {
+                    topAppBarState.heightOffset = 0f
+                }
+
                 lazyColumnState.animateScrollToItem(index = it, scrollOffset = -18)
             }
         }
@@ -117,10 +121,12 @@ fun LandingScreen(
                             isExpanded = isExpanded
                         )
 
-                        else -> Text(
-                            text = stringResource(section.titleResId),
-                            modifier = sectionModifier.height(600.dp)
+                        is SectionItem.Contact -> ContactSection(
+                            modifier = sectionModifier,
+                            isExpanded = isExpanded
                         )
+
+                        is SectionItem.Home -> {}
                     }
                 }
             }

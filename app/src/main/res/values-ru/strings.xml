@@ -26,10 +26,11 @@
     <string name="send_button">Отправить</string>
     <string name="date_in_past_error">Выбранная дата уже прошла. Пожалуйста, укажите актуальную дату.</string>
     <string name="count_is_not_positive_error">Количество гостей должно быть больше нуля. Пожалуйста, укажите корректное число.</string>
-    <string name="empty_required_error">Пожалуйста, заполните все обязательные поля: имя, телефон и почта.</string>
+    <string name="empty_required_error">Пожалуйста, заполните все обязательные поля.</string>
     <string name="date_selected_error">Вы не выбрали дату. Пожалуйста, укажите дату бронирования.</string>
     <string name="invalid_email_error">Указан некорректный email. Пожалуйста, проверьте написание и попробуйте снова.</string>
     <string name="invalid_phone_error">Некорректный номер телефона. Введите номер в правильном формате.</string>
     <string name="message_successful_snackbar">Сообщение успешно отправлено</string>
     <string name="booking_title">Бронирование</string>
+    <string name="message_title">Сообщение</string>
 </resources>

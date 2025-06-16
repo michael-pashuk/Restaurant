@@ -1,4 +1,4 @@
-package com.michael.restaurant.ui.screen.menu.section
+package com.michael.restaurant.ui.screen.menu.booking
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.michael.restaurant.R
 import com.michael.restaurant.service.transformation.PhoneNumberVisualTransformation
-import com.michael.restaurant.ui.screen.menu.component.BookingTextField
+import com.michael.restaurant.ui.component.FormTextField
 import com.michael.restaurant.ui.screen.menu.component.ModalDatePicker
 import kotlinx.coroutines.launch
 
@@ -49,10 +49,13 @@ fun BookingSection(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        val bookingFieldModifier = Modifier.fillMaxWidth()
+
         Text(
             text = "Booking",
             style = MaterialTheme.typography.titleMedium
         )
+
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -67,7 +70,7 @@ fun BookingSection(
 
             Spacer(modifier = Modifier.weight(0.15f))
 
-            BookingTextField(
+            FormTextField(
                 modifier = Modifier.weight(1f),
                 value = booking.count.toString(),
                 onValueChange = { it ->
@@ -88,16 +91,16 @@ fun BookingSection(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
         }
-        BookingTextField(
-            modifier = Modifier.fillMaxWidth(),
+        FormTextField(
+            modifier = bookingFieldModifier,
             value = booking.name,
             onValueChange = viewModel::changeName,
             label = stringResource(R.string.name_title),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
 
-        BookingTextField(
-            modifier = Modifier.fillMaxWidth(),
+        FormTextField(
+            modifier = bookingFieldModifier,
             value = booking.phone,
             onValueChange = {
                 val raw = it.filter { it -> it.isDigit() }.take(10)
@@ -107,13 +110,15 @@ fun BookingSection(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             visualTransformation = PhoneNumberVisualTransformation()
         )
-        BookingTextField(
-            modifier = Modifier.fillMaxWidth(),
+
+        FormTextField(
+            modifier = bookingFieldModifier,
             value = booking.email,
             onValueChange = viewModel::changeEmail,
             label = stringResource(R.string.email_title),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
+
         Button(
             modifier = Modifier.fillMaxWidth(0.5f),
             onClick = {
