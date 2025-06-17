@@ -38,4 +38,5 @@
     <string name="sunday_title">Вс</string>
     <string name="weekday_title">ВЫходной</string>
     <string name="contact_info_title">Контактная информация</string>
+    <string name="delicious_menu_title">Вкусное меню</string>
 </resources>

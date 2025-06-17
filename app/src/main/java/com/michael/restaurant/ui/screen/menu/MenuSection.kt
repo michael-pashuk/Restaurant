@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.michael.restaurant.R
 import com.michael.restaurant.ui.component.Title
 import com.michael.restaurant.ui.screen.menu.booking.BookingSection
+import com.michael.restaurant.ui.screen.menu.delicious.DeliciousSection
 
 @Composable
 fun MenuSection(
@@ -35,6 +36,8 @@ fun MenuSection(
             modifier = Modifier.fillMaxWidth(if (isExpanded) 0.5f else 1f),
             snackBarHostState = snackBarHostState
         )
+
+        DeliciousSection(isExpanded = isExpanded)
     }
 }
 

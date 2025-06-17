@@ -52,7 +52,7 @@ fun BookingSection(
         val bookingFieldModifier = Modifier.fillMaxWidth()
 
         Text(
-            text = "Booking",
+            text = stringResource(R.string.booking_title),
             style = MaterialTheme.typography.titleMedium
         )
 

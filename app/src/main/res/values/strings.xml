@@ -41,4 +41,5 @@
     <string name="sunday_title">Sun</string>
     <string name="weekday_title">Weekday</string>
     <string name="contact_info_title">Contact Info</string>
+    <string name="delicious_menu_title">Delicious Menu</string>
 </resources>

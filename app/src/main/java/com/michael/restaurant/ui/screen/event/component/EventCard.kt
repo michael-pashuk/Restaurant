@@ -20,10 +20,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.michael.restaurant.R
 import com.michael.restaurant.data.database.event.model.Event
+import java.util.Date
 
 @Composable
 fun EventCard(
@@ -74,4 +76,18 @@ fun EventCard(
 
 
     }
+}
+
+@Preview
+@Composable
+fun EventCardPreview() {
+    EventCard(
+        Event(
+            id = 0,
+            title = "Event",
+            date = Date(),
+            description = "Description",
+            image = "image"
+        )
+    ) { }
 }

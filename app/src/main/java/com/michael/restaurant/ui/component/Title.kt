@@ -15,7 +15,7 @@ fun Title(
     Text(
         modifier = modifier,
         text = text,
-        style = MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.headlineMedium,
         textAlign = if (isExpanded) TextAlign.Center else TextAlign.Start
     )
 }
